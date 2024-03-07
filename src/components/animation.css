@@ -1,0 +1,66 @@
+.underline-animation {
+  position: relative;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.underline-animation::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 0.05em;
+  background-color: black;
+  transform-origin: 0 0;
+  transform: scaleX(1);
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer .underline-animation::after {
+    background-color: white;
+  }
+}
+
+.underline-animation:hover::after {
+  transform-origin: bottom left;
+  transform: scaleX(1);
+}
+
+@keyframes underline-move {
+  0% {
+    transform-origin: bottom right;
+    transform: scaleX(1);
+  }
+  50% {
+    transform-origin: bottom right;
+    transform: scaleX(0);
+  }
+  51% {
+    transform-origin: bottom left;
+    transform: scaleX(0);
+  }
+  100% {
+    transform-origin: bottom left;
+    transform: scaleX(1);
+  }
+}
+
+.underline-animation:hover::after {
+  animation: underline-move 0.5s;
+}
+
+.button-animation {
+  transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-text-decoration-color,-webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(.215,.61,.355,1);
+  transition-duration: .3s;
+}
+
+.button-animation:hover .button-animation-child {
+  background-color: #212121;
+  color: #fff;
+  transition: ease-in-out 0.3s;
+}
